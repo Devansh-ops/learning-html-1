@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>BMI calculator</title>
+	<style type="text/css">
+		table, th, td {
+  			padding: 10px;
+		}
+	</style>
+	<script type="text/javascript">
+		function validateForm() {
+  			let x = document.forms["BMI"]["weight"].value;
+  			let y = document.forms["BMI"]["height"].value;
+  			if (x == "" && y == "") {
+  				alert("Weight and Height must be filled out");
+  				return false;
+  			}
+  			else if (x == "") {
+    			alert("Weight must be filled out");
+    			return false;
+  			}
+  			else if (y == "") {
+    			alert("Height must be filled out");
+    			return false;
+  			}
+  			if (y == 0) {
+  				alert("Divide by zero error. Height must not be zero");
+  				return false;
+  			}
+		}
+		function calcBMI() {
+			var flag = validateForm();
+			if (flag == false) {
+				return false;
+			}
+			let w = document.forms["BMI"]["weight"].value;
+			let h = document.forms["BMI"]["height"].value;
+			h = h / 100 ;
+			var bmi = w / (h*h);
+			//alert("The bmi is " + bmi.toFixed(2));
+			let int = "";
+			if (bmi < 16){
+				int = "serious underweight"
+			}
+			else if (bmi < 18){
+				int = "underweight";
+			}
+			else if (bmi < 24){
+				int = "normal weight";
+			}
+			else if (bmi < 29){
+				int = "overweight";
+			}
+			else if (bmi < 35) {
+				int = "seriously overweight";
+			}
+			else{
+				int = "gravely overweight";
+			}
+
+			let parent = document.getElementById("ans");
+			parent.innerHTML = "";
+			var table = document.createElement("table");
+			//table.setAttribute("style", "border: 1px solid black;");
+			var row1 = document.createElement("tr");
+			//row1.setAttribute("style", "border: 1px solid black;");
+			var row2 = document.createElement("tr");
+			//row2.setAttribute("style", "border: 1px solid black;");
+			var th1 = document.createElement("th");
+			//th1.setAttribute("style", "border: 1px solid black;");
+			var th2 = document.createElement("th");
+			//th2.setAttribute("style", "border: 1px solid black;");
+			var td1 = document.createElement("td");
+			//td1.setAttribute("style", "border: 1px solid black;");
+			var td2 = document.createElement("td");
+			//td2.setAttribute("style", "border: 1px solid black;");
+			td2.setAttribute("align", "center");
+			th1.innerHTML = "BMI";
+			th2.innerHTML = "Interpretation";
+
+			td1.innerHTML = bmi.toFixed(2);
+			td2.innerHTML = int;
+
+			row1.appendChild(th1);
+			row1.appendChild(th2);
+			row2.appendChild(td1);
+			row2.appendChild(td2);
+			table.appendChild(row1);
+			table.appendChild(row2);
+			parent.appendChild(table);
+
+			return false;
+		}
+	</script>
+</head>
+<body>
+	<div align="center">
+		<h1>BMI Calculator</h1>	
+		<br>
+		<h3>BCI3001 Web Security</h3>
+		<h3>Lab Assignment 2, Q3</h3>
+		<h3>Name: Devansh Sehgal</h3>
+		<h3>Registration Number: 20BCE0410</h3>
+	</div>
+	<hr>
+	<div align="center">
+		<form name="BMI" onsubmit="return calcBMI()">
+			<table>
+				<tr>
+				<th align="center" colspan="3">BMI calculator</th>
+				</tr>
+				<tr>
+					<td>Weight: </td>
+					<td><input type="number" name="weight" id="weight"></td>
+					<td>Kg</td>
+				</tr>
+				<tr>
+					<td>Height: </td>
+					<td><input type="number" name="height" id="height"></td>
+					<td>cm</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center"><input type="Submit" name="submit" value="Submit"></td>
+				</tr>
+			</table>
+		</form>
+		<br>
+		<div id="ans"></div>
+	</div>
+
+</body>
+</html>

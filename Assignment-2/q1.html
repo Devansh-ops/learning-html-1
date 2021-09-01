@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Input Unique</title>
+	<script type="text/javascript">
+		let arr = [];
+		function validateForm() {
+  			let x = document.forms["enterUnique"]["inp"].value;
+  			
+  			if (x == "") {
+    			alert("No value entered");
+    			return false;
+  			}
+  			else {
+  				return true;
+  			}
+		}
+		function checkUnique() {
+			let flag = validateForm();
+			if (flag == false){
+				return false;
+			}
+			let x = document.forms["enterUnique"]["inp"].value;
+			if (arr.includes(x)){
+				document.getElementById("ans").innerHTML = "Duplicate";
+				alert("Duplicate");
+				document.getElementById("Submit").disabled = true;
+			}
+			arr.push(x);
+			document.getElementById("array").innerHTML = arr.toString();
+			document.forms["enterUnique"]["inp"].value = "";
+			return false;
+		}
+	</script>
+</head>
+<body>
+	<div align="center">
+		<h1>Enter Unique Values Only</h1>	
+		<br>
+		<h3>BCI3001 Web Security</h3>
+		<h3>Lab Assignment 2, Q1</h3>
+		<h3>Name: Devansh Sehgal</h3>
+		<h3>Registration Number: 20BCE0410</h3>
+	</div>
+	<hr>
+	<div align="center">
+		<form name="enterUnique" onsubmit="return checkUnique()">
+			Input: 
+			<input type="number" name="inp" id="inp">
+			<input type="Submit" name="submit" value="Submit" id="Submit">
+		</form>
+		<br>
+		<div id="ans">Unique</div>
+		<div id="array"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Student Grade</title>
+	<style type="text/css">
+		table, th, td {
+  			padding: 5px;
+		}
+	</style>
+	<script type="text/javascript">
+		let n = 0;
+		let arr = [];
+		function validateN() {
+  			if (n <= 0) {
+  				alert("Number of students should be greater than zero");
+  				return false;
+  			}
+  			return true;
+		}
+		function displayResult(){
+			//alert(n);
+			for (let i = 1; i <= n; i++){
+				let pid = String(i);
+				let temp = [];
+				temp.push(document.getElementById("name"+pid).value);
+				temp.push(document.getElementById("reg"+pid).value);
+				let marks = [];
+				let totalMarks = 0;
+				for (let j = 1; j <= 5; j++){
+					let t = parseInt(document.getElementById("sub"+String(j)+pid).value);
+					if (t < 0 || t > 100 || !t){
+						alert("The Marks of Subject " + String(j)+ " of Student " + pid + " should be between [0,100]");
+						return false;
+					}
+					totalMarks += t;
+					marks.push(t);
+				}
+				temp.push(marks);
+				temp.push(totalMarks);
+				arr.push(temp);
+			}
+			document.getElementById("ans").appendChild(document.createElement("br"));
+			document.getElementById("ans").innerHTML += JSON.stringify(arr);
+			return false;
+		}
+		function createForm(){
+			n = document.getElementById("n").value;
+			//alert(n);
+			if (validateN() == false){
+				return false;
+			}
+			let ancestor = document.getElementById("stu-div");
+			ancestor.innerHTML="";
+			let parent = document.createElement("form");
+			parent.setAttribute("name", "stu-form");
+			parent.setAttribute("onsubmit", "return displayResult()");
+			for (let i=1; i <= n; i++){
+				parent.appendChild(document.createElement("hr"));
+				let pid = String(i);
+
+				let table = document.createElement("table");
+				let r1 = document.createElement("tr");
+				let r11 = document.createElement("td");
+				let r12 = document.createElement("td");
+
+				let r2 = document.createElement("tr");
+				let r21 = document.createElement("td");
+				let r22 = document.createElement("td");
+
+				let r3 = document.createElement("tr");
+				let r31 = document.createElement("td");
+				let r32 = document.createElement("td");
+
+				let r4 = document.createElement("tr");
+				let r41 = document.createElement("td");
+				let r42 = document.createElement("td");
+
+				let r5 = document.createElement("tr");
+				let r51 = document.createElement("td");
+				let r52 = document.createElement("td");
+
+				let r6 = document.createElement("tr");
+				let r61 = document.createElement("td");
+				let r62 = document.createElement("td");
+
+				let r7 = document.createElement("tr");
+				let r71 = document.createElement("td");
+				let r72 = document.createElement("td");
+
+				let label1 = document.createElement("label");
+				label1.innerHTML = "Name of Student " + pid + ":";
+				let name = document.createElement("input");
+				name.setAttribute("type", "text");
+				name.setAttribute("id", "name" + pid);
+
+				let label2 = document.createElement("label");
+				label2.innerHTML = "Register No. of Student " + pid + ":";
+				let reg = document.createElement("input");
+				reg.setAttribute("type", "text");
+				reg.setAttribute("id", "reg" + pid);
+
+				let label3 = document.createElement("label");
+				label3.innerHTML = "Mark in Subject 1 of Student " + pid + ":";
+				let sub1 = document.createElement("input");
+				sub1.setAttribute("type", "number");
+				sub1.setAttribute("id", "sub1" + pid);
+				sub1.setAttribute("placeholder", "0");
+
+				let label4= document.createElement("label");
+				label4.innerHTML = "Mark in Subject 2 of Student " + pid + ":";
+				let sub2 = document.createElement("input");
+				sub2.setAttribute("type", "number");
+				sub2.setAttribute("id", "sub2" + pid);
+				sub2.setAttribute("placeholder", "0");
+
+				let label5 = document.createElement("label");
+				label5.innerHTML = "Mark in Subject 3 of Student " + pid + ":";
+				let sub3 = document.createElement("input");
+				sub3.setAttribute("type", "number");
+				sub3.setAttribute("id", "sub3" + pid);
+				sub3.setAttribute("placeholder", "0");
+
+				let label6 = document.createElement("label");
+				label6.innerHTML = "Mark in Subject 4 of Student " + pid + ":";
+				let sub4 = document.createElement("input");
+				sub4.setAttribute("type", "number");
+				sub4.setAttribute("id", "sub4" + pid);
+				sub4.setAttribute("placeholder", "0");
+
+				let label7 = document.createElement("label");
+				label7.innerHTML = "Mark in Subject 5 of Student " + pid + ":";
+				let sub5 = document.createElement("input");
+				sub5.setAttribute("type", "number");
+				sub5.setAttribute("id", "sub5" + pid);
+				sub5.setAttribute("placeholder", "0");
+
+				r11.appendChild(label1);
+				r12.appendChild(name);
+				r1.appendChild(r11);
+				r1.appendChild(r12);
+				table.appendChild(r1);
+
+				r21.appendChild(label2);
+				r22.appendChild(reg);
+				r2.appendChild(r21);
+				r2.appendChild(r22);
+				table.appendChild(r2);
+
+				r31.appendChild(label3);
+				r32.appendChild(sub1);
+				r3.appendChild(r31);
+				r3.appendChild(r32);
+				table.appendChild(r3);
+
+				r41.appendChild(label4);
+				r42.appendChild(sub2);
+				r4.appendChild(r41);
+				r4.appendChild(r42);
+				table.appendChild(r4);
+
+				r51.appendChild(label5);
+				r52.appendChild(sub3);
+				r5.appendChild(r51);
+				r5.appendChild(r52);
+				table.appendChild(r5);
+				
+				r61.appendChild(label6);
+				r62.appendChild(sub4);
+				r6.appendChild(r61);
+				r6.appendChild(r62);
+				table.appendChild(r6);
+				
+				r71.appendChild(label7);
+				r72.appendChild(sub5);
+				r7.appendChild(r71);
+				r7.appendChild(r72);
+				table.appendChild(r7);
+								
+				parent.appendChild(table);
+			}
+			parent.appendChild(document.createElement("hr"));
+			let submit = document.createElement("input");
+			submit.setAttribute("type", "submit");
+			submit.setAttribute("name", "submit");
+			submit.setAttribute("id", "submit");
+			parent.appendChild(submit);
+			ancestor.appendChild(parent);
+			return false;
+		}
+	</script>
+</head>
+<body>
+	<div align="center">
+		<h1>Enter Unique Values Only</h1>	
+		<br>
+		<h3>BCI3001 Web Security</h3>
+		<h3>Lab Assignment 2, Q1</h3>
+		<h3>Name: Devansh Sehgal</h3>
+		<h3>Registration Number: 20BCE0410</h3>
+	</div>
+	<hr>
+	<div align="center">
+		<form name="num-form" onsubmit="return createForm()">
+			<label for="num-stu">Number of students: </label>
+			<input type="number" name="n" id="n">
+			<input type="Submit" name="submit" value="submit" id="submit">
+		</form>
+		<br>
+	</div>
+	<div align="center" id="stu-div"></div>
+	<div align="center" id="ans"></div>
+</body>
+</html>
