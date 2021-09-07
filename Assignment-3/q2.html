@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Odd or Even | Assignment 3</title>
+	<script type="text/javascript">
+		function validateForm() {
+  			document.getElementById("ans").innerHTML = "";
+  			let x = document.forms["Input"]["inp"].value;
+  			
+  			if (x == "") {
+    			alert("Enter a number!");
+    			return false;
+  			}
+  			else {
+  				return true;
+  			}
+		}
+		function findBiggestNumber() {
+			let flag = validateForm();
+			if (flag == false){
+				return false;
+			}
+
+			let x = document.forms["Input"]["inp"].value;
+  			
+  			document.getElementById("ans").innerHTML = "The given number " + String(x) + " is ";
+  			if (x % 2 == 1) {
+  				document.getElementById("ans").innerHTML += "Odd";
+  			}
+  			else {
+  				document.getElementById("ans").innerHTML += "Even";
+  			}
+			return false;
+		}
+	</script>
+</head>
+<body>
+	<div align="center">
+		<h1>Find whether the number is Odd or Even</h1>	
+		<br>
+		<h3>BCI3001 Web Security</h3>
+		<h3>Lab Assignment 3, Q2</h3>
+		<h3>Name: Devansh Sehgal</h3>
+		<h3>Registration Number: 20BCE0410</h3>
+	</div>
+	<hr>
+	<div align="center">
+		<form name="Input" onsubmit="return findBiggestNumber()"> 
+			Input: 
+			<input type="number" name="inp" id="inp" placeholder="Number">
+			<input type="Submit" name="submit" value="Submit" id="Submit">
+		</form>
+		<br>
+	</div>
+	<div align="center" id="ans"></div>
+	<br><br>
+	<div id="nav">
+		<table width=100%>
+			<tr align="center">
+				<td width="33.33%"><a href="q1.html">&lt;&lt; Question 1</a></td>
+				<td width="33.33%"><a href="index.html">Index</a></td>
+				<td width="33.33%"><a href="q3.html">Question 3 >></a></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
