@@ -27,8 +27,7 @@
   			let y = document.forms["Input"]["inp2"].value;
   			let z = document.forms["Input"]["inp3"].value;
   			
-  			let largest = ( (x > y) ? x : y ) > z ? ( (x > y) ? x : y ) : z ;
-			document.getElementById("ans").innerHTML = "Largest value is " + String(largest) ;
+			document.getElementById("ans").innerHTML = "Largest value is " + Math.max(x, y, z) ;
 			return false;
 		}
 	</script>
